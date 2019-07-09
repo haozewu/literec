@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>appico_96px.ico</ApplicationIcon>
+    <ApplicationIcon>appico_128px.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -88,9 +88,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="appico_96px.ico" />
     <None Include="nvidialogo_20px.jpg" />
     <None Include="intellogo_20px.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appico_128px.ico" />
+    <Content Include="appico_16px.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

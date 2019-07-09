@@ -28,13 +28,14 @@ namespace SREC
             InitializeComponent();
         }
 
+        // 以管理员身份启动
         public SRECForm(string[] args)
         {
             this.args = args;
 
             if (args[0] == "-r32Plugin" && IsAdministrator())
             {
-                Regsvr32Plugin.ScreenCaptureRecorder();
+                Regsvr32Plugin.ScreenCaptureRecorder(); // 注册插件
                 InitializeComponent();
             }
             else
@@ -44,16 +45,18 @@ namespace SREC
             }
         }
 
-
-        List<HotKey> hotKeyList = new List<HotKey>();
+        List<HotKey> hotKeyList = new List<HotKey>(); // 热键列表
 
         private void SRECForm_Load(object sender, EventArgs e)
         {
-            initFFmpeg();
+            initFFmpeg(); // 初始化FFmpeg
 
+            // 注册热键
             HotKeyManager.Init(Handle);
             hotKeyList.Add(HotKeyManager.Register(Keys.F11, Modifiers.Control, RecStart));
             hotKeyList.Add(HotKeyManager.Register(Keys.F12, Modifiers.Control, RecStop));
+
+            // 初始化菜单选项状态
 
             CPUToolStripMenuItem.Checked = false;
             QSVToolStripMenuItem.Checked = false;
@@ -73,10 +76,12 @@ namespace SREC
 
         WebClient webClient = new WebClient();
 
+        // 初始化FFmpeg
         private void initFFmpeg()
         {
             if (!File.Exists(Directory.GetCurrentDirectory() + "/ffmpeg/ffmpeg.exe"))
             {
+                // 下载FFmpeg
                 webClient.DownloadProgressChanged += DownloadProgressCallback;
                 webClient.DownloadFileCompleted += DownloadCompletedCallback;
                 webClient.DownloadFileAsync(new Uri("https://srec-1251216093.cos.ap-shanghai.myqcloud.com/ffmpeg.zip"), Application.StartupPath + "/ffmpeg.zip");
@@ -109,6 +114,7 @@ namespace SREC
         }
 
 
+        // 开始录制
         private void RecStart()
         {
             if (!isStarting)
@@ -127,6 +133,7 @@ namespace SREC
             }
         }
 
+        // 停止录制
         private void RecStop()
         {
             if (isStarting)
@@ -209,15 +216,8 @@ namespace SREC
         {
             if (LiveToolStripMenuItem.Checked)
             {
-                if (LiveAddrToolStripTextBox.Text.Substring(0, 5) == "rtmp:")
-                {
-                    outputTarget = LiveAddrToolStripTextBox.Text;
-                }
-                else
-                {
-                    LiveToolStripMenuItem.Checked = false;
-                    MessageBox.Show("请填写正确的推流地址！");
-                }
+                if (LiveAddrToolStripTextBox.Text.Substring(0, 5) == "rtmp:") { outputTarget = LiveAddrToolStripTextBox.Text; }
+                else { LiveToolStripMenuItem.Checked = false; MessageBox.Show("请填写正确的推流地址！"); }
             }
             else
             {
@@ -226,12 +226,14 @@ namespace SREC
         }
 
 
+        // 获取管理员权限
         private bool IsAdministrator()
         {
             WindowsIdentity current = WindowsIdentity.GetCurrent();
             WindowsPrincipal windowsPrincipal = new WindowsPrincipal(current);
             return windowsPrincipal.IsInRole(WindowsBuiltInRole.Administrator);
         }
+
 
         private void ScreenCaptureRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -241,17 +243,11 @@ namespace SREC
                 restartApplication.Arguments = "-r32Plugin";
                 restartApplication.Verb = "runas";
 
-                try
-                {
-                    Process.Start(restartApplication);
-
-                    isRestartOrQuit = true;
-                    Application.Exit();
-                }
-                catch { }
+                try { Process.Start(restartApplication); isRestartOrQuit = true; Application.Exit(); } catch { }
             }
             else
             {
+                // 注册ScreenCaptureRecorder插件
                 Regsvr32Plugin.ScreenCaptureRecorder();
                 ScreenCaptureRecorderToolStripMenuItem.Checked = (Settings.Default.inputDevice == "dshow");
             }
@@ -279,34 +275,20 @@ namespace SREC
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Exit())
-            {
-                webClient.Dispose();
-                Dispose();
-                Close();
-            }
+            if (Exit()) { webClient.Dispose(); Dispose(); Close(); }
         }
 
         private void SRECForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Exit())
-            {
-                webClient.Dispose();
-                Dispose();
-                Close();
-            }
-            else e.Cancel = true;
+            if (Exit()) { webClient.Dispose(); Dispose(); Close(); } else e.Cancel = true;
         }
 
-        private void SRECForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
+        private void SRECForm_FormClosed(object sender, FormClosedEventArgs e) { }
 
-        }
 
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
-            HotKeyManager.ProcessHotKey(ref m);
+            base.WndProc(ref m); HotKeyManager.ProcessHotKey(ref m);
         }
     }
 }
