@@ -1,13 +1,10 @@
 # SREC
 
-[![version](https://img.shields.io/badge/version-0.9.10.20190710-blue.svg?style=flat-square)](https://srec-1251216093.cos.ap-shanghai.myqcloud.com/SREC.zip)
-[![size](https://img.shields.io/badge/size-15.5KB-green.svg?style=flat-square)](https://srec-1251216093.cos.ap-shanghai.myqcloud.com/SREC.zip)
+[![version](https://img.shields.io/badge/version-0.9.10.20190710-blue.svg?style=flat-square)](https://srec-1251216093.file.myqcloud.com/SREC.zip)
+[![size](https://img.shields.io/badge/size-13.6KB-green.svg?style=flat-square)](https://srec-1251216093.file.myqcloud.com/SREC.zip)
 [![license](https://img.shields.io/github/license/Ouyang-Zhaoxing/SREC.svg?style=flat-square)](https://github.com/Ouyang-Zhaoxing/SREC/blob/master/LICENSE)
 
 轻量级屏幕录制、直播工具。
-
-![appimg](https://srec-1251216093.cos.ap-shanghai.myqcloud.com/appimg.png)
-
 
 ## **如何使用**
 【Ctrl+F11】启动录制 【Ctrl+F12】停止录制 (点击上方 **version** 标签下载)
@@ -21,7 +18,7 @@
 
 小提示：B站直播地址 = 你的rtmp地址 + 你的直播码
 
-![rtmpimg](https://srec-1251216093.cos.ap-shanghai.myqcloud.com/rtmpimg.png)
+![rtmpimg](https://srec-1251216093.file.myqcloud.com/rtmpimg.png)
 
 
 ## **编码器**

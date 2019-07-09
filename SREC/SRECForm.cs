@@ -84,7 +84,7 @@ namespace SREC
                 // 下载FFmpeg
                 webClient.DownloadProgressChanged += DownloadProgressCallback;
                 webClient.DownloadFileCompleted += DownloadCompletedCallback;
-                webClient.DownloadFileAsync(new Uri("https://srec-1251216093.cos.ap-shanghai.myqcloud.com/ffmpeg.zip"), Application.StartupPath + "/ffmpeg.zip");
+                webClient.DownloadFileAsync(new Uri("https://srec-1251216093.file.myqcloud.com/ffmpeg.zip"), Application.StartupPath + "/ffmpeg.zip");
             }
             else
             {

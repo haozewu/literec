@@ -45,7 +45,7 @@ namespace SREC
 
         public static void ScreenCaptureRecorder()
         {
-            //插件ScreenCaptureRecorder:https://srec-1251216093.cos.ap-shanghai.myqcloud.com/screen-capture-recorder.zip
+            //插件ScreenCaptureRecorder:https://srec-1251216093.file.myqcloud.com/screen-capture-recorder.zip
 
             string targetPath;
 
@@ -76,7 +76,7 @@ namespace SREC
             string pluginPath = Application.StartupPath + "/plugin/screen-capture-recorder";
 
             //注册
-            if (!File.Exists(pluginPath + ".zip")) DownloadPlugin("https://srec-1251216093.cos.ap-shanghai.myqcloud.com/screen-capture-recorder.zip", pluginPath + ".zip");
+            if (!File.Exists(pluginPath + ".zip")) DownloadPlugin("https://srec-1251216093.file.myqcloud.com/screen-capture-recorder.zip", pluginPath + ".zip");
 
             Thread.Sleep(200);
 
