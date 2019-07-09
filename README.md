@@ -1,8 +1,8 @@
 # SREC
 
-[![version](https://img.shields.io/badge/version-1.0Beta8.2019.3.10-blue.svg)](https://srec-1251216093.cos.ap-shanghai.myqcloud.com/SREC.zip)
-[![size](https://img.shields.io/badge/size-15.5KB-green.svg)](https://srec-1251216093.cos.ap-shanghai.myqcloud.com/SREC.zip)
-[![license](https://img.shields.io/github/license/Ouyang-Zhaoxing/SREC.svg)](https://github.com/Ouyang-Zhaoxing/SREC/blob/master/LICENSE)
+[![version](https://img.shields.io/badge/version-0.9.10.20190710-blue.svg?style=flat-square)](https://srec-1251216093.cos.ap-shanghai.myqcloud.com/SREC.zip)
+[![size](https://img.shields.io/badge/size-15.5KB-green.svg?style=flat-square)](https://srec-1251216093.cos.ap-shanghai.myqcloud.com/SREC.zip)
+[![license](https://img.shields.io/github/license/Ouyang-Zhaoxing/SREC.svg?style=flat-square)](https://github.com/Ouyang-Zhaoxing/SREC/blob/master/LICENSE)
 
 轻量级屏幕录制、直播工具。
 
@@ -10,7 +10,7 @@
 
 
 ## **如何使用**
-【Ctrl+F11】启动录制 【Ctrl+F12】停止录制
+【Ctrl+F11】启动录制 【Ctrl+F12】停止录制 (点击上方 **version** 标签下载)
 
 
 ## **新功能！**
