@@ -98,6 +98,7 @@
             this.CPUToolStripMenuItem.Name = "CPUToolStripMenuItem";
             this.CPUToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.CPUToolStripMenuItem.Text = "CPU";
+            this.CPUToolStripMenuItem.Visible = false;
             this.CPUToolStripMenuItem.CheckedChanged += new System.EventHandler(this.CPUToolStripMenuItem_CheckedChanged);
             this.CPUToolStripMenuItem.Click += new System.EventHandler(this.CPUToolStripMenuItem_Click);
             // 
@@ -148,6 +149,7 @@
             this.PluginToolStripMenuItem.Name = "PluginToolStripMenuItem";
             this.PluginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.PluginToolStripMenuItem.Text = "插件";
+            this.PluginToolStripMenuItem.Visible = false;
             // 
             // ScreenCaptureRecorderToolStripMenuItem
             // 
