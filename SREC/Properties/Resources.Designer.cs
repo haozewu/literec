@@ -63,9 +63,9 @@ namespace SREC.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap intellogo_24px {
+        internal static System.Drawing.Bitmap intel {
             get {
-                object obj = ResourceManager.GetObject("intellogo_24px", resourceCulture);
+                object obj = ResourceManager.GetObject("intel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace SREC.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap nvidialogo_24px {
+        internal static System.Drawing.Bitmap nvidia {
             get {
-                object obj = ResourceManager.GetObject("nvidialogo_24px", resourceCulture);
+                object obj = ResourceManager.GetObject("nvidia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

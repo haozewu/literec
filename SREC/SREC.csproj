@@ -50,8 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FFmpegApi.cs" />
-    <Compile Include="GlobalHotKey.cs" />
+    <Compile Include="FFmpeg\FFmpegApi.cs" />
+    <Compile Include="FFmpeg\FFmpegFile.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemUtils\Administrator.cs" />
+    <Compile Include="SystemUtils\GlobalHotKey.cs" />
     <Compile Include="Regsvr32Plugin.cs" />
     <Compile Include="SRECForm.cs">
       <SubType>Form</SubType>
@@ -63,14 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="SRECForm.resx">
       <DependentUpon>SRECForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,12 +90,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="nvidialogo_20px.jpg" />
-    <None Include="intellogo_20px.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="appico_128px.ico" />
-    <Content Include="appico_16px.ico" />
+    <Content Include="Icons\appico_128px.ico" />
+    <Content Include="Icons\appico_128px.png" />
+    <Content Include="Icons\appico_32px.ico" />
+    <Content Include="Icons\intel.png" />
+    <Content Include="Icons\intellogo_128px.png" />
+    <Content Include="Icons\intellogo_24px.png" />
+    <Content Include="Icons\intellogo_32px.png" />
+    <Content Include="Icons\intellogo_64px.png" />
+    <Content Include="Icons\nvidia.png" />
+    <Content Include="Icons\nvidialogo_128px.png" />
+    <Content Include="Icons\nvidialogo_24px.png" />
+    <Content Include="Icons\nvidialogo_32px.png" />
+    <Content Include="Icons\nvidialogo_64px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -103,7 +103,7 @@
             // 
             // QSVToolStripMenuItem
             // 
-            this.QSVToolStripMenuItem.Image = global::SREC.Properties.Resources.intellogo_20px;
+            this.QSVToolStripMenuItem.Image = global::SREC.Properties.Resources.intel;
             this.QSVToolStripMenuItem.Name = "QSVToolStripMenuItem";
             this.QSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.QSVToolStripMenuItem.Text = "QSV";
@@ -112,7 +112,7 @@
             // 
             // NVENCToolStripMenuItem
             // 
-            this.NVENCToolStripMenuItem.Image = global::SREC.Properties.Resources.nvidialogo_20px;
+            this.NVENCToolStripMenuItem.Image = global::SREC.Properties.Resources.nvidia;
             this.NVENCToolStripMenuItem.Name = "NVENCToolStripMenuItem";
             this.NVENCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.NVENCToolStripMenuItem.Text = "NVENC";

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using SREC.Properties;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
-using SREC.Properties;
 
 namespace SREC
 {

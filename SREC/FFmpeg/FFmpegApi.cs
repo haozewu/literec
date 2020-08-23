@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace FFmpegApi
+namespace SREC.FFmpeg
 {
     public static class Record
     {

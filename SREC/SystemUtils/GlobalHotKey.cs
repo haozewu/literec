@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace GlobalHotKey
+namespace SREC.SystemUtils
 {
     internal static class WinApi
     {

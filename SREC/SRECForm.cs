@@ -1,39 +1,31 @@
-﻿using System;
+﻿using SREC.FFmpeg;
+using SREC.Properties;
+using SREC.SystemUtils;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
-using System.Net;
-using System.Security.Principal;
 using System.Threading;
 using System.Windows.Forms;
-using SREC.Properties;
-using FFmpegApi;
-using GlobalHotKey;
 
 namespace SREC
 {
     public partial class SRECForm : Form
     {
-        string[] args = null;
+        string savePath = Application.StartupPath + "/output/"; // 录制保持路径
 
-        bool isStarting = false;
-        bool isRestartOrQuit = false;
+        bool isRestartOrQuit = false, isStarting = false;
 
-        string outputTarget = Application.StartupPath + "/output/";
+        List<HotKey> hotKeyList = new List<HotKey>(); // 热键列表
 
         public SRECForm()
         {
             InitializeComponent();
         }
 
-        // 以管理员身份启动
         public SRECForm(string[] args)
         {
-            this.args = args;
-
-            if (args[0] == "-r32Plugin" && IsAdministrator())
+            if (args[0] == "-r32Plugin" && Administrator.IsAdministrator())
             {
                 Regsvr32Plugin.ScreenCaptureRecorder(); // 注册插件
                 InitializeComponent();
@@ -45,11 +37,9 @@ namespace SREC
             }
         }
 
-        List<HotKey> hotKeyList = new List<HotKey>(); // 热键列表
-
         private void SRECForm_Load(object sender, EventArgs e)
         {
-            initFFmpeg(); // 初始化FFmpeg
+            initFFmpeg();
 
             // 注册热键
             HotKeyManager.Init(Handle);
@@ -73,18 +63,11 @@ namespace SREC
             ScreenCaptureRecorderToolStripMenuItem.Checked = (Settings.Default.inputDevice == "dshow");
         }
 
-
-        WebClient webClient = new WebClient();
-
-        // 初始化FFmpeg
         private void initFFmpeg()
         {
-            if (!File.Exists(Directory.GetCurrentDirectory() + "/ffmpeg/ffmpeg.exe"))
+            if (!FFmpegFile.Exists())
             {
-                // 下载FFmpeg
-                webClient.DownloadProgressChanged += DownloadProgressCallback;
-                webClient.DownloadFileCompleted += DownloadCompletedCallback;
-                webClient.DownloadFileAsync(new Uri("https://srec-1251216093.file.myqcloud.com/ffmpeg.zip"), Application.StartupPath + "/ffmpeg.zip");
+                FFmpegFile.Download(Application.StartupPath, DownloadProgressCallback, DownloadCompletedCallback);
             }
             else
             {
@@ -93,28 +76,22 @@ namespace SREC
             }
         }
 
-        private void DownloadProgressCallback(object sender, DownloadProgressChangedEventArgs e)
+        private void DownloadProgressCallback(int value)
         {
-            infolabel.Text = "正在下载FFmpeg组件(" + e.ProgressPercentage + "%)...";
+            infolabel.Text = "正在下载FFmpeg组件(" + value + "%)...";
             Application.DoEvents();
         }
 
-        private void DownloadCompletedCallback(object sender, AsyncCompletedEventArgs e)
+        private void DownloadCompletedCallback()
         {
-            infolabel.Text = "正在解压FFmpeg组件...";
-            Application.DoEvents();
-
-            Thread.Sleep(200);
-            ZipFile.ExtractToDirectory(Application.StartupPath + "/ffmpeg.zip", Application.StartupPath);
-            Thread.Sleep(200);
-            File.Delete(Application.StartupPath + "/ffmpeg.zip");
-
             infolabel.Text = "准备就绪";
             Application.DoEvents();
         }
 
 
-        // 开始录制
+        /// <summary>
+        /// 开始录制
+        /// </summary>
         private void RecStart()
         {
             if (!isStarting)
@@ -125,7 +102,7 @@ namespace SREC
 
                 if (!Directory.Exists(Application.StartupPath + "/output")) Directory.CreateDirectory(Application.StartupPath + "/output");
 
-                Record.Start(true, 0, 0, 0, 0, 30, Settings.Default.inputDevice, Settings.Default.inputSource, Settings.Default.Codec, outputTarget);
+                Record.Start(true, 0, 0, 0, 0, 30, Settings.Default.inputDevice, Settings.Default.inputSource, Settings.Default.Codec, savePath);
                 isStarting = true;
 
                 infolabel.Text = "正在录制...";
@@ -133,7 +110,9 @@ namespace SREC
             }
         }
 
-        // 停止录制
+        /// <summary>
+        /// 停止录制
+        /// </summary>
         private void RecStop()
         {
             if (isStarting)
@@ -216,28 +195,18 @@ namespace SREC
         {
             if (LiveToolStripMenuItem.Checked)
             {
-                if (LiveAddrToolStripTextBox.Text.Substring(0, 5) == "rtmp:") { outputTarget = LiveAddrToolStripTextBox.Text; }
+                if (LiveAddrToolStripTextBox.Text.Substring(0, 5) == "rtmp:") { savePath = LiveAddrToolStripTextBox.Text; }
                 else { LiveToolStripMenuItem.Checked = false; MessageBox.Show("请填写正确的推流地址！"); }
             }
             else
             {
-                outputTarget = Application.StartupPath + "/output/";
+                savePath = Application.StartupPath + "/output/";
             }
         }
 
-
-        // 获取管理员权限
-        private bool IsAdministrator()
-        {
-            WindowsIdentity current = WindowsIdentity.GetCurrent();
-            WindowsPrincipal windowsPrincipal = new WindowsPrincipal(current);
-            return windowsPrincipal.IsInRole(WindowsBuiltInRole.Administrator);
-        }
-
-
         private void ScreenCaptureRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (IsAdministrator() == false)
+            if (Administrator.IsAdministrator() == false)
             {
                 ProcessStartInfo restartApplication = new ProcessStartInfo(Application.ExecutablePath);
                 restartApplication.Arguments = "-r32Plugin";
@@ -275,12 +244,12 @@ namespace SREC
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Exit()) { webClient.Dispose(); Dispose(); Close(); }
+            if (Exit()) { Dispose(); Close(); }
         }
 
         private void SRECForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Exit()) { webClient.Dispose(); Dispose(); Close(); } else e.Cancel = true;
+            if (Exit()) { Dispose(); Close(); } else e.Cancel = true;
         }
 
         private void SRECForm_FormClosed(object sender, FormClosedEventArgs e) { }
