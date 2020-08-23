@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SREC")]
-[assembly: AssemblyCopyright("Copyright (c) 2019 Blinking")]
+[assembly: AssemblyCopyright("Copyright (c) 2020 Blinking")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
