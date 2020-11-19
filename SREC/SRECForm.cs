@@ -46,21 +46,19 @@ namespace SREC
             hotKeyList.Add(HotKeyManager.Register(Keys.F11, Modifiers.Control, RecStart));
             hotKeyList.Add(HotKeyManager.Register(Keys.F12, Modifiers.Control, RecStop));
 
-            // 初始化菜单选项状态
-
-            CPUToolStripMenuItem.Checked = false;
-            QSVToolStripMenuItem.Checked = false;
-            NVENCToolStripMenuItem.Checked = false;
+            EncList.Items.Add("CPU软件编码器");
+            EncList.Items.Add("英特尔QSV");
+            EncList.Items.Add("英伟达NVENC");
 
             switch (Settings.Default.Codec)
             {
-                case "libx264": CPUToolStripMenuItem.Checked = true; break;
-                case "h264_qsv": QSVToolStripMenuItem.Checked = true; break;
-                case "h264_nvenc": NVENCToolStripMenuItem.Checked = true; break;
+                case "libx264": EncList.SelectedIndex = 0; break;
+                case "h264_qsv": EncList.SelectedIndex = 1; break;
+                case "h264_nvenc": EncList.SelectedIndex = 2; break;
                 default: break;
             }
 
-            ScreenCaptureRecorderToolStripMenuItem.Checked = (Settings.Default.inputDevice == "dshow");
+            InstallPluginButton.Enabled = !(Settings.Default.inputDevice == "dshow");
         }
 
         private void initFFmpeg()
@@ -69,23 +67,17 @@ namespace SREC
             {
                 FFmpegFile.Download(Application.StartupPath, DownloadProgressCallback, DownloadCompletedCallback);
             }
-            else
-            {
-                infolabel.Text = "准备就绪";
-                Application.DoEvents();
-            }
+            else { InfoLabel.Text = "准备就绪"; Application.DoEvents(); }
         }
 
         private void DownloadProgressCallback(int value)
         {
-            infolabel.Text = "正在下载FFmpeg组件(" + value + "%)...";
-            Application.DoEvents();
+            InfoLabel.Text = "正在下载FFmpeg组件(" + value + "%)..."; Application.DoEvents();
         }
 
         private void DownloadCompletedCallback()
         {
-            infolabel.Text = "准备就绪";
-            Application.DoEvents();
+            InfoLabel.Text = "准备就绪"; Application.DoEvents();
         }
 
 
@@ -96,17 +88,14 @@ namespace SREC
         {
             if (!isStarting)
             {
-                Visible = false;
-                WindowState = FormWindowState.Minimized;
-                Thread.Sleep(500);
+                Visible = false; WindowState = FormWindowState.Minimized; Thread.Sleep(500);
 
                 if (!Directory.Exists(Application.StartupPath + "/output")) Directory.CreateDirectory(Application.StartupPath + "/output");
 
                 Record.Start(true, 0, 0, 0, 0, 30, Settings.Default.inputDevice, Settings.Default.inputSource, Settings.Default.Codec, savePath);
                 isStarting = true;
 
-                infolabel.Text = "正在录制...";
-                Application.DoEvents();
+                InfoLabel.Text = "正在录制..."; Application.DoEvents();
             }
         }
 
@@ -117,94 +106,28 @@ namespace SREC
         {
             if (isStarting)
             {
-                Record.Quit();
-                isStarting = false;
+                Record.Quit(); isStarting = false;
 
-                Visible = true;
-                WindowState = FormWindowState.Normal;
-                Activate();
+                Visible = true; WindowState = FormWindowState.Normal; Activate();
 
-                infolabel.Text = "准备就绪";
-                Application.DoEvents();
+                InfoLabel.Text = "录制完成！"; Application.DoEvents();
 
-                if (LiveToolStripMenuItem.Checked) MessageBox.Show("直播已停止！");
-                else MessageBox.Show("录制完成！");
+                MessageBox.Show("录制完成！");
             }
         }
 
-
-        private void SRECForm_SizeChanged(object sender, EventArgs e)
+        private void EncList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Minimized) Visible = false;
-        }
-
-        private void notifyIcon_DoubleClick(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Minimized)
+            switch (EncList.SelectedIndex)
             {
-                Visible = true;
-                WindowState = FormWindowState.Normal;
-                Activate();
+                case 0: Settings.Default.Codec = "libx264"; break;
+                case 1: Settings.Default.Codec = "h264_qsv"; break;
+                case 2: Settings.Default.Codec = "h264_nvenc"; break;
+                default: break;
             }
         }
 
-
-        private void CPUToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CPUToolStripMenuItem.Checked = true;
-            QSVToolStripMenuItem.Checked = false;
-            NVENCToolStripMenuItem.Checked = false;
-        }
-
-        private void QSVToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CPUToolStripMenuItem.Checked = false;
-            QSVToolStripMenuItem.Checked = true;
-            NVENCToolStripMenuItem.Checked = false;
-        }
-
-        private void NVENCToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CPUToolStripMenuItem.Checked = false;
-            QSVToolStripMenuItem.Checked = false;
-            NVENCToolStripMenuItem.Checked = true;
-        }
-
-        private void CPUToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CPUToolStripMenuItem.Checked) Settings.Default.Codec = "libx264";
-        }
-
-        private void QSVToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            if (QSVToolStripMenuItem.Checked) Settings.Default.Codec = "h264_qsv";
-        }
-
-        private void NVENCToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            if (NVENCToolStripMenuItem.Checked) Settings.Default.Codec = "h264_nvenc";
-        }
-
-
-        private void LiveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LiveToolStripMenuItem.Checked = !LiveToolStripMenuItem.Checked;
-        }
-
-        private void LiveToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            if (LiveToolStripMenuItem.Checked)
-            {
-                if (LiveAddrToolStripTextBox.Text.Substring(0, 5) == "rtmp:") { savePath = LiveAddrToolStripTextBox.Text; }
-                else { LiveToolStripMenuItem.Checked = false; MessageBox.Show("请填写正确的推流地址！"); }
-            }
-            else
-            {
-                savePath = Application.StartupPath + "/output/";
-            }
-        }
-
-        private void ScreenCaptureRecorderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void InstallPluginButton_Click(object sender, EventArgs e)
         {
             if (Administrator.IsAdministrator() == false)
             {
@@ -218,10 +141,22 @@ namespace SREC
             {
                 // 注册ScreenCaptureRecorder插件
                 Regsvr32Plugin.ScreenCaptureRecorder();
-                ScreenCaptureRecorderToolStripMenuItem.Checked = (Settings.Default.inputDevice == "dshow");
+                InstallPluginButton.Enabled = !(Settings.Default.inputDevice == "dshow");
             }
         }
 
+        private void SRECForm_SizeChanged(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized) Visible = false;
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Visible = true; WindowState = FormWindowState.Normal; Activate();
+            }
+        }
 
         private bool Exit()
         {
@@ -253,7 +188,6 @@ namespace SREC
         }
 
         private void SRECForm_FormClosed(object sender, FormClosedEventArgs e) { }
-
 
         protected override void WndProc(ref Message m)
         {

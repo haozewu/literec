@@ -30,31 +30,31 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SRECForm));
-            this.infolabel = new System.Windows.Forms.Label();
+            this.InfoLabel = new System.Windows.Forms.Label();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CodecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CPUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.QSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NVENCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LiveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LiveAddrToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.PluginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScreenCaptureRecorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.InfoText = new System.Windows.Forms.Label();
+            this.EncGroup = new System.Windows.Forms.GroupBox();
+            this.SelectEncText = new System.Windows.Forms.Label();
+            this.EncList = new System.Windows.Forms.ComboBox();
+            this.RecGroup = new System.Windows.Forms.GroupBox();
+            this.RecButton = new System.Windows.Forms.Button();
+            this.InstallPluginButton = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
+            this.EncGroup.SuspendLayout();
+            this.RecGroup.SuspendLayout();
             this.SuspendLayout();
             // 
-            // infolabel
+            // InfoLabel
             // 
-            this.infolabel.AutoSize = true;
-            this.infolabel.Location = new System.Drawing.Point(13, 13);
-            this.infolabel.Name = "infolabel";
-            this.infolabel.Size = new System.Drawing.Size(53, 17);
-            this.infolabel.TabIndex = 1;
-            this.infolabel.Text = "初始化...";
+            this.InfoLabel.AutoSize = true;
+            this.InfoLabel.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.InfoLabel.Location = new System.Drawing.Point(78, 120);
+            this.InfoLabel.Name = "InfoLabel";
+            this.InfoLabel.Size = new System.Drawing.Size(59, 12);
+            this.InfoLabel.TabIndex = 1;
+            this.InfoLabel.Text = "初始化...";
             // 
             // notifyIcon
             // 
@@ -67,110 +67,98 @@
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LiveToolStripMenuItem,
-            this.PluginToolStripMenuItem,
-            this.SettingsToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(181, 114);
-            // 
-            // SettingsToolStripMenuItem
-            // 
-            this.SettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CodecToolStripMenuItem,
-            this.LiveSettingsToolStripMenuItem});
-            this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
-            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SettingsToolStripMenuItem.Text = "设置";
-            // 
-            // CodecToolStripMenuItem
-            // 
-            this.CodecToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CPUToolStripMenuItem,
-            this.QSVToolStripMenuItem,
-            this.NVENCToolStripMenuItem});
-            this.CodecToolStripMenuItem.Name = "CodecToolStripMenuItem";
-            this.CodecToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CodecToolStripMenuItem.Text = "编码器";
-            // 
-            // CPUToolStripMenuItem
-            // 
-            this.CPUToolStripMenuItem.Name = "CPUToolStripMenuItem";
-            this.CPUToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CPUToolStripMenuItem.Text = "CPU";
-            this.CPUToolStripMenuItem.Visible = false;
-            this.CPUToolStripMenuItem.CheckedChanged += new System.EventHandler(this.CPUToolStripMenuItem_CheckedChanged);
-            this.CPUToolStripMenuItem.Click += new System.EventHandler(this.CPUToolStripMenuItem_Click);
-            // 
-            // QSVToolStripMenuItem
-            // 
-            this.QSVToolStripMenuItem.Image = global::SREC.Properties.Resources.intel;
-            this.QSVToolStripMenuItem.Name = "QSVToolStripMenuItem";
-            this.QSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.QSVToolStripMenuItem.Text = "QSV";
-            this.QSVToolStripMenuItem.CheckedChanged += new System.EventHandler(this.QSVToolStripMenuItem_CheckedChanged);
-            this.QSVToolStripMenuItem.Click += new System.EventHandler(this.QSVToolStripMenuItem_Click);
-            // 
-            // NVENCToolStripMenuItem
-            // 
-            this.NVENCToolStripMenuItem.Image = global::SREC.Properties.Resources.nvidia;
-            this.NVENCToolStripMenuItem.Name = "NVENCToolStripMenuItem";
-            this.NVENCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.NVENCToolStripMenuItem.Text = "NVENC";
-            this.NVENCToolStripMenuItem.CheckedChanged += new System.EventHandler(this.NVENCToolStripMenuItem_CheckedChanged);
-            this.NVENCToolStripMenuItem.Click += new System.EventHandler(this.NVENCToolStripMenuItem_Click);
-            // 
-            // LiveToolStripMenuItem
-            // 
-            this.LiveToolStripMenuItem.Name = "LiveToolStripMenuItem";
-            this.LiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.LiveToolStripMenuItem.Text = "直播";
-            this.LiveToolStripMenuItem.CheckedChanged += new System.EventHandler(this.LiveToolStripMenuItem_CheckedChanged);
-            this.LiveToolStripMenuItem.Click += new System.EventHandler(this.LiveToolStripMenuItem_Click);
-            // 
-            // LiveSettingsToolStripMenuItem
-            // 
-            this.LiveSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LiveAddrToolStripTextBox});
-            this.LiveSettingsToolStripMenuItem.Name = "LiveSettingsToolStripMenuItem";
-            this.LiveSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.LiveSettingsToolStripMenuItem.Text = "直播设置";
-            // 
-            // LiveAddrToolStripTextBox
-            // 
-            this.LiveAddrToolStripTextBox.Name = "LiveAddrToolStripTextBox";
-            this.LiveAddrToolStripTextBox.Size = new System.Drawing.Size(100, 23);
-            this.LiveAddrToolStripTextBox.Text = "RTMP地址";
-            // 
-            // PluginToolStripMenuItem
-            // 
-            this.PluginToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ScreenCaptureRecorderToolStripMenuItem});
-            this.PluginToolStripMenuItem.Name = "PluginToolStripMenuItem";
-            this.PluginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.PluginToolStripMenuItem.Text = "插件";
-            this.PluginToolStripMenuItem.Visible = false;
-            // 
-            // ScreenCaptureRecorderToolStripMenuItem
-            // 
-            this.ScreenCaptureRecorderToolStripMenuItem.Name = "ScreenCaptureRecorderToolStripMenuItem";
-            this.ScreenCaptureRecorderToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.ScreenCaptureRecorderToolStripMenuItem.Text = "ScreenCaptureRecorder";
-            this.ScreenCaptureRecorderToolStripMenuItem.Click += new System.EventHandler(this.ScreenCaptureRecorderToolStripMenuItem_Click);
+            this.contextMenuStrip.Size = new System.Drawing.Size(101, 26);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.ExitToolStripMenuItem.Text = "退出";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
+            // InfoText
+            // 
+            this.InfoText.AutoSize = true;
+            this.InfoText.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.InfoText.Location = new System.Drawing.Point(12, 120);
+            this.InfoText.Name = "InfoText";
+            this.InfoText.Size = new System.Drawing.Size(65, 12);
+            this.InfoText.TabIndex = 2;
+            this.InfoText.Text = "当前状态：";
+            // 
+            // EncGroup
+            // 
+            this.EncGroup.Controls.Add(this.EncList);
+            this.EncGroup.Controls.Add(this.SelectEncText);
+            this.EncGroup.Location = new System.Drawing.Point(11, 12);
+            this.EncGroup.Name = "EncGroup";
+            this.EncGroup.Size = new System.Drawing.Size(250, 45);
+            this.EncGroup.TabIndex = 3;
+            this.EncGroup.TabStop = false;
+            this.EncGroup.Text = "编码器";
+            // 
+            // SelectEncText
+            // 
+            this.SelectEncText.AutoSize = true;
+            this.SelectEncText.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SelectEncText.Location = new System.Drawing.Point(6, 19);
+            this.SelectEncText.Name = "SelectEncText";
+            this.SelectEncText.Size = new System.Drawing.Size(80, 17);
+            this.SelectEncText.TabIndex = 0;
+            this.SelectEncText.Text = "选择编码器：";
+            // 
+            // EncList
+            // 
+            this.EncList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EncList.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.EncList.FormattingEnabled = true;
+            this.EncList.ItemHeight = 12;
+            this.EncList.Location = new System.Drawing.Point(86, 16);
+            this.EncList.Name = "EncList";
+            this.EncList.Size = new System.Drawing.Size(157, 20);
+            this.EncList.TabIndex = 1;
+            this.EncList.SelectedIndexChanged += new System.EventHandler(this.EncList_SelectedIndexChanged);
+            // 
+            // RecGroup
+            // 
+            this.RecGroup.Controls.Add(this.InstallPluginButton);
+            this.RecGroup.Controls.Add(this.RecButton);
+            this.RecGroup.Location = new System.Drawing.Point(11, 60);
+            this.RecGroup.Name = "RecGroup";
+            this.RecGroup.Size = new System.Drawing.Size(250, 50);
+            this.RecGroup.TabIndex = 4;
+            this.RecGroup.TabStop = false;
+            // 
+            // RecButton
+            // 
+            this.RecButton.Location = new System.Drawing.Point(6, 16);
+            this.RecButton.Name = "RecButton";
+            this.RecButton.Size = new System.Drawing.Size(147, 23);
+            this.RecButton.TabIndex = 0;
+            this.RecButton.Text = "录制";
+            this.RecButton.UseVisualStyleBackColor = true;
+            // 
+            // InstallPluginButton
+            // 
+            this.InstallPluginButton.Location = new System.Drawing.Point(159, 16);
+            this.InstallPluginButton.Name = "InstallPluginButton";
+            this.InstallPluginButton.Size = new System.Drawing.Size(85, 23);
+            this.InstallPluginButton.TabIndex = 1;
+            this.InstallPluginButton.Text = "安装插件";
+            this.InstallPluginButton.UseVisualStyleBackColor = true;
+            this.InstallPluginButton.Click += new System.EventHandler(this.InstallPluginButton_Click);
+            // 
             // SRECForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(204, 41);
-            this.Controls.Add(this.infolabel);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(272, 141);
+            this.Controls.Add(this.RecGroup);
+            this.Controls.Add(this.EncGroup);
+            this.Controls.Add(this.InfoText);
+            this.Controls.Add(this.InfoLabel);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -184,6 +172,9 @@
             this.Load += new System.EventHandler(this.SRECForm_Load);
             this.SizeChanged += new System.EventHandler(this.SRECForm_SizeChanged);
             this.contextMenuStrip.ResumeLayout(false);
+            this.EncGroup.ResumeLayout(false);
+            this.EncGroup.PerformLayout();
+            this.RecGroup.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,20 +182,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Label infolabel;
+        private System.Windows.Forms.Label InfoLabel;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem SettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CodecToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CPUToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem QSVToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem NVENCToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem LiveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem LiveSettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox LiveAddrToolStripTextBox;
-        private System.Windows.Forms.ToolStripMenuItem PluginToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ScreenCaptureRecorderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.Label InfoText;
+        private System.Windows.Forms.GroupBox EncGroup;
+        private System.Windows.Forms.ComboBox EncList;
+        private System.Windows.Forms.Label SelectEncText;
+        private System.Windows.Forms.GroupBox RecGroup;
+        private System.Windows.Forms.Button InstallPluginButton;
+        private System.Windows.Forms.Button RecButton;
     }
 }
 
