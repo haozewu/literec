@@ -36,11 +36,11 @@
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InfoText = new System.Windows.Forms.Label();
             this.EncGroup = new System.Windows.Forms.GroupBox();
-            this.SelectEncText = new System.Windows.Forms.Label();
             this.EncList = new System.Windows.Forms.ComboBox();
+            this.SelectEncText = new System.Windows.Forms.Label();
             this.RecGroup = new System.Windows.Forms.GroupBox();
-            this.RecButton = new System.Windows.Forms.Button();
             this.InstallPluginButton = new System.Windows.Forms.Button();
+            this.RecButton = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.EncGroup.SuspendLayout();
             this.RecGroup.SuspendLayout();
@@ -49,10 +49,10 @@
             // InfoLabel
             // 
             this.InfoLabel.AutoSize = true;
-            this.InfoLabel.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.InfoLabel.Location = new System.Drawing.Point(78, 120);
+            this.InfoLabel.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.InfoLabel.Location = new System.Drawing.Point(68, 118);
             this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(59, 12);
+            this.InfoLabel.Size = new System.Drawing.Size(44, 16);
             this.InfoLabel.TabIndex = 1;
             this.InfoLabel.Text = "初始化...";
             // 
@@ -81,10 +81,10 @@
             // InfoText
             // 
             this.InfoText.AutoSize = true;
-            this.InfoText.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.InfoText.Location = new System.Drawing.Point(12, 120);
+            this.InfoText.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.InfoText.Location = new System.Drawing.Point(12, 118);
             this.InfoText.Name = "InfoText";
-            this.InfoText.Size = new System.Drawing.Size(65, 12);
+            this.InfoText.Size = new System.Drawing.Size(58, 16);
             this.InfoText.TabIndex = 2;
             this.InfoText.Text = "当前状态：";
             // 
@@ -99,6 +99,18 @@
             this.EncGroup.TabStop = false;
             this.EncGroup.Text = "编码器";
             // 
+            // EncList
+            // 
+            this.EncList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EncList.Font = new System.Drawing.Font("Arial", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EncList.FormattingEnabled = true;
+            this.EncList.ItemHeight = 13;
+            this.EncList.Location = new System.Drawing.Point(88, 16);
+            this.EncList.Name = "EncList";
+            this.EncList.Size = new System.Drawing.Size(156, 21);
+            this.EncList.TabIndex = 1;
+            this.EncList.SelectedIndexChanged += new System.EventHandler(this.EncList_SelectedIndexChanged);
+            // 
             // SelectEncText
             // 
             this.SelectEncText.AutoSize = true;
@@ -108,18 +120,6 @@
             this.SelectEncText.Size = new System.Drawing.Size(80, 17);
             this.SelectEncText.TabIndex = 0;
             this.SelectEncText.Text = "选择编码器：";
-            // 
-            // EncList
-            // 
-            this.EncList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.EncList.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.EncList.FormattingEnabled = true;
-            this.EncList.ItemHeight = 12;
-            this.EncList.Location = new System.Drawing.Point(86, 16);
-            this.EncList.Name = "EncList";
-            this.EncList.Size = new System.Drawing.Size(157, 20);
-            this.EncList.TabIndex = 1;
-            this.EncList.SelectedIndexChanged += new System.EventHandler(this.EncList_SelectedIndexChanged);
             // 
             // RecGroup
             // 
@@ -131,16 +131,6 @@
             this.RecGroup.TabIndex = 4;
             this.RecGroup.TabStop = false;
             // 
-            // RecButton
-            // 
-            this.RecButton.Location = new System.Drawing.Point(6, 16);
-            this.RecButton.Name = "RecButton";
-            this.RecButton.Size = new System.Drawing.Size(147, 23);
-            this.RecButton.TabIndex = 0;
-            this.RecButton.Text = "录制";
-            this.RecButton.UseVisualStyleBackColor = true;
-            this.RecButton.Click += new System.EventHandler(this.RecButton_Click);
-            // 
             // InstallPluginButton
             // 
             this.InstallPluginButton.Location = new System.Drawing.Point(159, 16);
@@ -150,6 +140,16 @@
             this.InstallPluginButton.Text = "安装插件";
             this.InstallPluginButton.UseVisualStyleBackColor = true;
             this.InstallPluginButton.Click += new System.EventHandler(this.InstallPluginButton_Click);
+            // 
+            // RecButton
+            // 
+            this.RecButton.Location = new System.Drawing.Point(6, 16);
+            this.RecButton.Name = "RecButton";
+            this.RecButton.Size = new System.Drawing.Size(146, 23);
+            this.RecButton.TabIndex = 0;
+            this.RecButton.Text = "录制";
+            this.RecButton.UseVisualStyleBackColor = true;
+            this.RecButton.Click += new System.EventHandler(this.RecButton_Click);
             // 
             // SRECForm
             // 
