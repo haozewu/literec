@@ -46,9 +46,9 @@ namespace SREC
             hotKeyList.Add(HotKeyManager.Register(Keys.F11, Modifiers.Control, RecStart));
             hotKeyList.Add(HotKeyManager.Register(Keys.F12, Modifiers.Control, RecStop));
 
-            EncList.Items.Add("CPU软件编码器");
-            EncList.Items.Add("英特尔QSV");
-            EncList.Items.Add("英伟达NVENC");
+            EncList.Items.Add("CPU");
+            EncList.Items.Add("QSV");
+            EncList.Items.Add("NVENC");
 
             switch (Settings.Default.Codec)
             {
@@ -82,14 +82,8 @@ namespace SREC
 
         private void RecButton_Click(object sender, EventArgs e)
         {
-            if (RecButton.Text == "录制")
-            {
-                RecStart(); RecButton.Text = "正在录制..."; Application.DoEvents();
-            }
-            else
-            {
-                RecStop(); RecButton.Text = "录制"; Application.DoEvents();
-            }
+            if (RecButton.Text == "录制") RecStart();
+            else RecStop();
         }
 
         /// <summary>
@@ -106,6 +100,7 @@ namespace SREC
                 Record.Start(true, 0, 0, 0, 0, 30, Settings.Default.inputDevice, Settings.Default.inputSource, Settings.Default.Codec, savePath);
                 isStarting = true;
 
+                RecButton.Text = "停止"; Application.DoEvents();
                 InfoLabel.Text = "正在录制..."; Application.DoEvents();
             }
         }
@@ -121,6 +116,7 @@ namespace SREC
 
                 Visible = true; WindowState = FormWindowState.Normal; Activate();
 
+                RecButton.Text = "录制"; Application.DoEvents();
                 InfoLabel.Text = "录制完成！"; Application.DoEvents();
 
                 MessageBox.Show("录制完成！");
