@@ -139,6 +139,7 @@
             this.RecButton.TabIndex = 0;
             this.RecButton.Text = "录制";
             this.RecButton.UseVisualStyleBackColor = true;
+            this.RecButton.Click += new System.EventHandler(this.RecButton_Click);
             // 
             // InstallPluginButton
             // 

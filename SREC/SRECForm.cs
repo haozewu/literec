@@ -80,6 +80,17 @@ namespace SREC
             InfoLabel.Text = "准备就绪"; Application.DoEvents();
         }
 
+        private void RecButton_Click(object sender, EventArgs e)
+        {
+            if (RecButton.Text == "录制")
+            {
+                RecStart(); RecButton.Text = "正在录制..."; Application.DoEvents();
+            }
+            else
+            {
+                RecStop(); RecButton.Text = "录制"; Application.DoEvents();
+            }
+        }
 
         /// <summary>
         /// 开始录制
