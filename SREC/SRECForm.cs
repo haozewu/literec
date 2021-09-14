@@ -142,7 +142,8 @@ namespace SREC
                 restartApplication.Arguments = "-r32Plugin";
                 restartApplication.Verb = "runas";
 
-                try { Process.Start(restartApplication); isRestartOrQuit = true; Application.Exit(); } catch { }
+                try { Process.Start(restartApplication); isRestartOrQuit = true; Application.Exit(); }
+                catch { }
             }
             else
             {

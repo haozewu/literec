@@ -46,7 +46,7 @@ namespace SREC
         public static void ScreenCaptureRecorder()
         {
             //插件ScreenCaptureRecorder:https://srec-1251216093.file.myqcloud.com/screen-capture-recorder.zip
-
+            // 已经不能用了
             string targetPath;
 
             if (Environment.Is64BitOperatingSystem) targetPath = "C:/Program Files (x86)/screen-capture-recorder";
@@ -75,12 +75,12 @@ namespace SREC
 
             string pluginPath = Application.StartupPath + "/plugin/screen-capture-recorder";
 
-            //注册
-            if (!File.Exists(pluginPath + ".zip")) DownloadPlugin("https://srec-1251216093.file.myqcloud.com/screen-capture-recorder.zip", pluginPath + ".zip");
+            //注册 不能用了
+            //if (!File.Exists(pluginPath + ".zip")) DownloadPlugin("https://srec-1251216093.file.myqcloud.com/screen-capture-recorder.zip", pluginPath + ".zip");
 
             Thread.Sleep(200);
 
-            if (!Directory.Exists(pluginPath)) ZipFile.ExtractToDirectory(pluginPath + ".zip", Application.StartupPath + "/plugin");
+            //if (!Directory.Exists(pluginPath)) ZipFile.ExtractToDirectory(pluginPath + ".zip", Application.StartupPath + "/plugin");
 
             Thread.Sleep(200);
 
@@ -97,6 +97,7 @@ namespace SREC
 
             if (audioRegSuccess && videoRegSuccess)
             {
+                // 根本就没有成功，上面的两个bool无用
                 MessageBox.Show("注册成功！");
 
                 Settings.Default.inputDevice = "dshow";

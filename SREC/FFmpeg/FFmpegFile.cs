@@ -32,7 +32,8 @@ namespace SREC.FFmpeg
 
             webClient.DownloadProgressChanged += DownloadProgressCallback;
             webClient.DownloadFileCompleted += DownloadCompletedCallback;
-            webClient.DownloadFileAsync(new Uri("https://srec-1251216093.file.myqcloud.com/ffmpeg.zip"), basePath + "/ffmpeg.zip");
+            // 这应该是个编码器解码器，但是链接坏掉了，通过跟踪这玩意后续干了啥，然后确定zip里是什么
+            //webClient.DownloadFileAsync(new Uri("https://srec-1251216093.file.myqcloud.com/ffmpeg.zip"), basePath + "/ffmpeg.zip");
         }
 
         private static void DownloadProgressCallback(object sender, DownloadProgressChangedEventArgs e)
@@ -43,9 +44,10 @@ namespace SREC.FFmpeg
         private static void DownloadCompletedCallback(object sender, AsyncCompletedEventArgs e)
         {
             Thread.Sleep(300);
-            ZipFile.ExtractToDirectory(basePath + "/ffmpeg.zip", basePath);
-            Thread.Sleep(300);
-            File.Delete(basePath + "/ffmpeg.zip");
+            // 直接不用解这个包，反正也没有。
+            //ZipFile.ExtractToDirectory(basePath + "/ffmpeg.zip", basePath);
+            //Thread.Sleep(300);
+            //File.Delete(basePath + "/ffmpeg.zip");
 
             onCompletedCallback();
         }
